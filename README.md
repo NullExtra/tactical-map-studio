@@ -1,75 +1,46 @@
-# React + TypeScript + Vite
+# Tactical Map Studio & AI Navigation Engine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Web-based game development tooling, procedural level generator, and pathfinding algorithm simulation suite built for technical portfolios.
 
-Currently, two official plugins are available:
+![Tech Stack](https://img.shields.io/badge/Tech-React_%7C_TypeScript_%7C_Vite_%7C_Tailwind-blue)
+![Security](https://img.shields.io/badge/Security-100%25_Client_Side_%7C_Zero_API_Keys-success)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🎮 Overview
+**Tactical Map Studio** is a high-performance, client-side game engineering tool designed to demonstrate core computer science principles in game development. It features procedural map generation, weighted graph pathfinding, 2.5D grid rendering, and real-time raycasting field-of-view (FoV) calculations entirely in the browser without external dependencies.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Technical Architecture & Features
 
-## Expanding the ESLint configuration
+1. **Procedural Level Generation (3 Algorithms):**
+   * **Tactical Chambers (BSP + Corridor carving):** Generates structured rooms connected by orthogonal hallways.
+   * **Organic Caves (Cellular Automata):** Simulates natural cave systems using neighbor-state iterative smoothing.
+   * **Braided Maze:** Implements randomized depth-first search with loop-carving to provide multiple alternative routes.
+2. **Pathfinding Engine (A*, Dijkstra, BFS):**
+   * Computes optimal routes across multi-terrain grids (Standard Floor, Water Terrain with 2x movement cost, and Chokepoints with 3x movement cost).
+   * Supports 4-directional and 8-directional (diagonal) movement constraints with corner-cutting collision prevention.
+   * Supports intermediate Waypoints (`P`) for complex patrol routing (`A -> P -> B`).
+3. **2D Raycasting Field-of-View (Fog of War):**
+   * Implements Bresenham's line-of-sight algorithm to calculate real-time visibility shadows cast by 2.5D obstacles.
+4. **Agent Simulation & Telemetry:**
+   * Live step-by-step agent traversal along computed paths with real-time performance readouts in milliseconds (`ms`).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Quick Start & Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Clone the repository and run it locally:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Clone the repository
+git clone [https://github.com/NullExtra/tactical-map-studio.git](https://github.com/NullExtra/tactical-map-studio.git)
 
-```
+# Navigate into the directory
+cd tactical-map-studio
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+# Install dependencies
+npm install
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+# Start local development server
+npm run dev
